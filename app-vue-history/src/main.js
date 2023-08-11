@@ -11,7 +11,7 @@ Vue.config.productionTip = false;
 let router = null;
 let instance = null;
 
-function render({ container } = {}) {
+function render({ data = {}, container } = {}) {
   router = new VueRouter({
     base: window.__POWERED_BY_QIANKUN__ ? '/app-vue-history' : '/',
     mode: 'history',
@@ -21,6 +21,12 @@ function render({ container } = {}) {
   instance = new Vue({
     router,
     store,
+    data(){
+      return {
+        parentRouter: data.router,
+        parentVuex: data.store,
+      }
+    },
     render: h => h(App),
   }).$mount(container ? container.querySelector('#appVueHistory') : '#appVueHistory');
 }

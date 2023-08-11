@@ -10,7 +10,10 @@ Vue.config.productionTip = false;
 let router = null;
 let instance = null;
 
-function render({ data = {} , container } = {}) {
+function render(props = {}) {
+  console.log(props, 'props')
+  const { data = {}, container } = props
+  // console.log(container, 'container', container.querySelector('#appVueHash'))
   router = new VueRouter({
     routes,
   });
